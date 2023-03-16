@@ -1,7 +1,7 @@
 {
-  "name": "my-webpack-project",
+  "name": "comment-block",
   "version": "1.0.0",
-  "description": "My webpack project",
+  "description": "Comment Block",
   "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,7 +12,7 @@
     "serve": "webpack serve",
     "dev": "webpack --mode development"
   },
-  "author": "",
+  "author": "TsogoevaTS",
   "license": "ISC",
   "devDependencies": {
     "@webpack-cli/generators": "^3.0.1",
