@@ -97,6 +97,13 @@ function likeComments(likedIds) {
 	})
 }
 
+// function addNotice(field) {
+// }
+
+// function removeNotice(field) {
+
+// }
+
 export default (elements, state) => onChange(state, (path, value) => {
 
 	console.log('VIEWWWWWWW')
@@ -104,7 +111,7 @@ export default (elements, state) => onChange(state, (path, value) => {
 	console.log(path)
 	console.log(value)
 
-	const { button, textArea, container, form } = elements;
+	const { button, textArea, container, form, name, date } = elements;
 
 	switch (path) {
 		case 'comments':
@@ -115,21 +122,62 @@ export default (elements, state) => onChange(state, (path, value) => {
 			likeComments(state.likeCommentIds);
 			break;
 
+		case 'focusedField.name':
+			state.focusedField.name.classList.remove('invalid');
+
+			if (state.invalidField.textArea) {
+				button.setAttribute('disabled', '');
+			} else {
+				button.removeAttribute('disabled');
+			}
+			break;
+
+		case 'focusedField.textArea':
+			state.focusedField.textArea.classList.remove('invalid');
+
+			if (state.invalidField.name) {
+				button.setAttribute('disabled', '');
+			} else {
+				button.removeAttribute('disabled');
+			}
+			break;
+
+		case 'invalidField.name':
+			state.invalidField.name.classList.add('invalid');
+			button.setAttribute('disabled', '');
+			break;
+
+		case 'invalidField.textArea':
+			state.invalidField.textArea.classList.add('invalid');
+			button.setAttribute('disabled', '');
+			break;
+
 		case 'process': {
 			switch (value) {
 				case 'receiving':
 					button.setAttribute('disabled', '');
+					name.setAttribute('readonly', '');
+					date.setAttribute('readonly', '');
 					textArea.setAttribute('readonly', '');
 					break;
 
 				case 'received':
 					button.removeAttribute('disabled');
+					name.removeAttribute('readonly');
+					date.removeAttribute('readonly');
 					textArea.removeAttribute('readonly');
 					form.reset();
 					textArea.focus();
 					break;
+
+				default:
+					throw new Error('Unknown process!');
+
 			}
 			break;
 		}
+
+		default:
+			throw new Error('Unknown state!');
 	}
 })
