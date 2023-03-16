@@ -48,17 +48,21 @@
 		<form class="comment__input">
 			<div class="comment__option">
 				<div class="comment__option_name">
-					<input name="name" class="comment__name_input" type="text" placeholder="Введите имя...">
+					<input name="name" tabindex="1" class="comment__name_input" type="text"
+						placeholder="Введите имя...">
+					<span class="comment__name_notice">Пустое поле! Введите имя!</span>
 				</div>
 				<div class="comment__option_date">
-					<input name="date" class="comment__date_input" type="text" placeholder="Введите дату...">
+					<input name="date" tabindex="2" class="comment__date_input" type="datetime"
+						placeholder="Введите дату...">
 				</div>
 			</div>
 			<div class="comment__field">
-				<textarea name="text" class="comment__field_input" type="text"
+				<span class="comment__field_notice">Пустое поле! Введите текст!</span>
+				<textarea name="text" tabindex="3" class="comment__field_input" type="text"
 					placeholder="Введите комментарий..."></textarea>
 				<div class="comment__field_button">
-					<button type="submit">Отправить</button>
+					<button tabindex="4" type="submit">Отправить</button>
 				</div>
 			</div>
 		</form>
