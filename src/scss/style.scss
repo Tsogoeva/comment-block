@@ -2,7 +2,7 @@
 @import "./reset.scss";
 
 // Шрифты
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
 
 body {
 	font-family: "Roboto", sans-serif;
@@ -65,11 +65,6 @@ body {
 					display: inline-block;
 					margin: 2px 3px 0 10px;
 				}
-
-				.liked {
-					border: 1px solid #df5c5c;
-					border-radius: 50%;
-				}
 			}
 		}
 	}
@@ -121,6 +116,8 @@ body {
 			}
 			.comment__option_date {
 				.comment__date_input {
+					color: rgba(0, 0, 0, 0.6);
+
 					border: 1px solid #cecccc;
 					border-radius: 10px;
 
