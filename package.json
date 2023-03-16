@@ -1,6 +1,7 @@
 {
   "name": "comment-block",
   "version": "1.0.0",
+  "type": "module",
   "description": "Comment Block",
   "main": "./src/index.js",
   "scripts": {
