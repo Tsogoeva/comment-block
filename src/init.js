@@ -3,7 +3,7 @@ import render from './view.js';
 const getId = () => Math.floor(Math.random() * 1000);
 
 const eventHandlers = (view, state, elements) => {
-	const { form, container } = elements;
+	const { form, container, name, textArea } = elements;
 
 	function submitHandler(event) {
 		event.preventDefault();
@@ -49,38 +49,35 @@ const eventHandlers = (view, state, elements) => {
 		}
 	}
 
+	name.addEventListener('focus', (event) => {
+		state.invalidField.name = '';
+		view.focusedField.name = event.target;
+	});
+	name.addEventListener('blur', (event) => {
+		state.focusedField.name = '';
 
-	// function likeCommentHandler(event) {
-	// 	console.log('sdvsdfbsfb')
-	// 	const currentTagComment = event.target.closest('[data-id]');
-	// 	const currentId = currentTagComment.dataset.id;
+		if (event.target.value.length === 0) {
+			view.invalidField.name = event.target;
+		}
+	});
+	textArea.addEventListener('focus', (event) => {
+		state.invalidField.textArea = '';
+		view.focusedField.textArea = event.target;
+	});
+	textArea.addEventListener('blur', (event) => {
+		state.focusedField.textArea = '';
 
-	// 	let indexId = state.likeCommentIds.indexOf(currentId);
+		if (event.target.value.length === 0) {
+			view.invalidField.textArea = event.target;
+		}
+	});
 
-	// 	if (indexId !== -1) {
-	// 		view.likeCommentIds.splice(indexId, 1);
-	// 	} else {
-	// 		view.likeCommentIds.push(currentId);
-	// 	}
-	// }
-
-	// function removeCommentHandler(event) {
-	// 	const currentTagComment = event.target.closest('[data-id]');
-	// 	const currentId = currentTagComment.dataset.id;
-
-	// 	view.removingCommentId = currentId;
-	// 	view.comments.filter((comment) => comment.id !== currentId);
-	// 	view.process = 'removing';
-	// }
-
-	// console.log('')
-
-	form.addEventListener('submit', submitHandler);
 	container.addEventListener('click', commentsHandler);
-	// likeIcons.forEach((icon) => icon.addEventListener('click', likeCommentHandler));
-	// removeIcons.forEach((icon) => icon.addEventListener('click', removeCommentHandler));
+	form.addEventListener('submit', submitHandler);
+
 
 }
+
 
 
 
@@ -92,14 +89,11 @@ export default function () {
 
 	const elements = {
 		form: document.querySelector('form'),
-		container: document.querySelector('.comment__list'),
-		// nameItem: document.querySelector('.comment__item_name'),
-		// textItem: document.querySelector('.comment__item_text'),
-		// dateItem: document.querySelector('.comment__item_date'),
-		// likeIcons: document.querySelectorAll('.comment__item_like'),
-		// removeIcons: document.querySelectorAll('.comment__item_remove'),
+		name: document.querySelector('[name="name"]'),
+		date: document.querySelector('[name="date"]'),
 		textArea: document.querySelector('.comment__field_input'),
 		button: document.querySelector('[type="submit"]'),
+		container: document.querySelector('.comment__list'),
 	}
 
 	const state = {
@@ -114,9 +108,16 @@ export default function () {
 		], // { id, name, text, date, isLiked: false }
 		likeCommentIds: ['3', '4', '77', '46'],
 		removingCommentId: '',
+		focusedField: {
+			name: '', textArea: '',
+		},
+		invalidField: {
+			name: '', textArea: '',
+		},
 	}
 
 	const view = render(elements, state);
 
 	eventHandlers(view, state, elements);
+
 }
