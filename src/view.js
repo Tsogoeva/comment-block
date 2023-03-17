@@ -147,6 +147,7 @@ export default (elements, state) => onChange(state, (path, value) => {
 				noticeName.style.display = 'none';
 			} else {
 				name.classList.add('invalid');
+				name.blur();
 				noticeName.style.display = 'block';
 			}
 			break;

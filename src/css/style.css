@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -96,8 +96,10 @@ h6 {
 
 body {
   font-family: "Roboto", sans-serif;
-  background-color: rgb(187, 210, 243);
   color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  background-color: rgb(187, 210, 243);
 }
 
 .comment__container {
@@ -116,7 +118,8 @@ body {
   padding-bottom: 10px;
 }
 .comment__container .comment__list {
-  min-height: 400px;
+  height: 400px;
+  overflow: auto;
 }
 .comment__container .comment__list .comment__item {
   border: 1px solid #cecccc;
@@ -156,18 +159,39 @@ body {
   justify-content: space-between;
   margin-bottom: 10px;
 }
+.comment__container .comment__input .comment__option .comment__option_name {
+  position: relative;
+}
 .comment__container .comment__input .comment__option .comment__option_name .comment__name_input {
   min-width: 150px;
   border: 1px solid #cecccc;
   border-radius: 10px;
   padding: 5px;
 }
+.comment__container .comment__input .comment__option .comment__option_name .invalid {
+  border: 1px solid #df5c5c;
+  background-color: rgba(223, 92, 92, 0.4588235294);
+}
+.comment__container .comment__input .comment__option .comment__option_name .comment__name_notice {
+  display: none;
+  position: absolute;
+  bottom: 33px;
+  left: 60px;
+  border: 1px solid #cecccc;
+  background-color: #e5e5e5;
+  border-radius: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  padding: 5px;
+}
 .comment__container .comment__input .comment__option .comment__option_date .comment__date_input {
+  color: rgba(0, 0, 0, 0.6);
   border: 1px solid #cecccc;
   border-radius: 10px;
   padding: 5px;
 }
 .comment__container .comment__input .comment__field {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -179,6 +203,22 @@ body {
   border-radius: 10px;
   padding: 5px;
   resize: none;
+}
+.comment__container .comment__input .comment__field .invalid {
+  border: 1px solid #df5c5c;
+  background-color: rgba(223, 92, 92, 0.4588235294);
+}
+.comment__container .comment__input .comment__field .comment__field_notice {
+  display: none;
+  position: absolute;
+  bottom: 53px;
+  right: 180px;
+  border: 1px solid #cecccc;
+  background-color: #e5e5e5;
+  border-radius: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  padding: 5px;
 }
 .comment__container .comment__input .comment__field .comment__field_button button {
   height: 35px;

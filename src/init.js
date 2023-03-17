@@ -135,6 +135,8 @@ export default function () {
 		lineWithNumberOfComments: document.querySelector('.comment__count'),
 	}
 
+	elements.name.focus();
+
 	const state = {
 		process: '', // received
 		comments: [],
@@ -153,9 +155,10 @@ export default function () {
 		},
 	}
 
+	const currentTime = getCurrentFormatedDate(getCurrentDate());
+	elements.date.value = currentTime;
+
 	const view = render(elements, state);
 
 	eventHandlers(view, state, elements);
-	elements.name.focus();
-	elements.date.value = getCurrentFormatedDate(getCurrentDate());
 }
